@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aikord Landing Page</title>
+  <meta name="description" content="Aikord builds AI products, agent systems, and decision software for real-world use." />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&f[]=cabinet-grotesk@500,700,800&display=swap" />
+  <style>
+    :root,[data-theme="light"]{
+      --text-xs:clamp(.75rem,.7rem + .25vw,.875rem);
+      --text-sm:clamp(.875rem,.8rem + .35vw,1rem);
+      --text-base:clamp(1rem,.95rem + .25vw,1.125rem);
+      --text-lg:clamp(1.125rem,1rem + .75vw,1.5rem);
+      --text-xl:clamp(1.5rem,1.2rem + 1.25vw,2.25rem);
+      --text-2xl:clamp(2rem,1.2rem + 2.5vw,3.5rem);
+      --text-3xl:clamp(2.8rem,1rem + 4.8vw,5.5rem);
+      --space-1:.25rem;--space-2:.5rem;--space-3:.75rem;--space-4:1rem;--space-5:1.25rem;--space-6:1.5rem;--space-8:2rem;--space-10:2.5rem;--space-12:3rem;--space-16:4rem;--space-20:5rem;--space-24:6rem;
+      --color-bg:#f5f8fc;--color-surface:#ffffff;--color-surface-2:#eef4fb;--color-surface-offset:#e6eef9;--color-divider:rgba(8,18,38,.08);--color-border:rgba(8,18,38,.10);
+      --color-text:#0c1528;--color-text-muted:#56627b;--color-text-faint:#8790a3;--color-text-inverse:#eff6ff;
+      --color-primary:#115bff;--color-primary-hover:#0a49d5;--color-blue:#4cb4ff;--color-indigo:#7d7cff;
+      --radius-sm:.5rem;--radius-md:.85rem;--radius-lg:1.25rem;--radius-xl:1.75rem;--radius-full:999px;
+      --shadow-sm:0 10px 30px rgba(11,20,37,.06);--shadow-md:0 20px 60px rgba(11,20,37,.12);
+      --font-body:'Satoshi',Inter,sans-serif;--font-display:'Cabinet Grotesk','Satoshi',sans-serif;
+      --content:1180px;--transition:180ms cubic-bezier(.16,1,.3,1);
+    }
+    [data-theme="dark"]{
+      --color-bg:#08101c;--color-surface:#0d1628;--color-surface-2:#101b2f;--color-surface-offset:#16233a;--color-divider:rgba(255,255,255,.08);--color-border:rgba(255,255,255,.10);
+      --color-text:#edf4ff;--color-text-muted:#a0aec5;--color-text-faint:#73809d;--color-text-inverse:#08111f;
+      --color-primary:#69a7ff;--color-primary-hover:#8abcff;--color-blue:#63d1ff;--color-indigo:#9a92ff;
+      --shadow-sm:0 12px 36px rgba(0,0,0,.25);--shadow-md:0 24px 80px rgba(0,0,0,.40);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth;scroll-padding-top:6rem}
+    body{font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;color:var(--color-text);background:radial-gradient(circle at top left, color-mix(in srgb,var(--color-primary) 10%, transparent), transparent 26%),radial-gradient(circle at 90% 10%, color-mix(in srgb,var(--color-blue) 8%, transparent), transparent 20%),var(--color-bg)}
+    img,svg{display:block;max-width:100%;height:auto} button,input,textarea{font:inherit} a{text-decoration:none;color:inherit}
+    :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
+    @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+    .container{width:min(calc(100% - 2rem),var(--content));margin-inline:auto}
+    .skip-link{position:absolute;left:-9999px}.skip-link:focus{left:1rem;top:1rem;background:var(--color-surface);padding:.75rem 1rem;border-radius:.75rem;z-index:100}
+    .site-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--color-bg) 84%, transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--color-divider)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 0}
+    .brand{display:flex;align-items:center;gap:.85rem;min-height:44px}
+    .brand-logo{width:2.65rem;height:2.65rem;padding:.5rem;border-radius:.9rem;background:linear-gradient(135deg,var(--color-primary),var(--color-blue));color:#fff;box-shadow:var(--shadow-sm)}
+    .brand-name{font-family:var(--font-display);font-size:1.15rem;letter-spacing:-.03em}
+    .nav-links{display:flex;align-items:center;gap:1.15rem;color:var(--color-text-muted);font-size:var(--text-sm)}
+    .nav-actions{display:flex;align-items:center;gap:.75rem}
+    .theme-toggle,.btn,.ghost-link{min-height:44px;display:inline-flex;align-items:center;justify-content:center;transition:all var(--transition)}
+    .theme-toggle{width:44px;border:1px solid var(--color-border);border-radius:var(--radius-full);background:var(--color-surface)}
+    .btn{padding:.9rem 1.15rem;border-radius:var(--radius-full);font-weight:700;border:1px solid transparent}
+    .btn-primary{background:var(--color-primary);color:#fff;box-shadow:var(--shadow-md)}
+    .btn-primary:hover{background:var(--color-primary-hover)}
+    .btn-secondary{background:var(--color-surface);border-color:var(--color-border)}
+    .ghost-link{padding:.8rem .25rem;color:var(--color-text-muted)}
+    main section{padding:clamp(3.5rem,7vw,6rem) 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:.55rem;padding:.5rem .85rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-primary) 10%, var(--color-surface));color:var(--color-primary);font-size:var(--text-xs);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    h1,h2,h3{font-family:var(--font-display);line-height:1.04;letter-spacing:-.035em}
+    p{max-width:68ch;color:var(--color-text-muted)}
+    .hero{padding-top:clamp(4rem,9vw,7rem)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:1.5rem;align-items:end}
+    .hero-copy h1{font-size:var(--text-3xl);max-width:10ch;margin-top:1rem}
+    .hero-copy p{margin-top:1rem;font-size:clamp(1rem,.98rem + .2vw,1.15rem)}
+    .hero-actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:1.5rem}
+    .hero-stats{display:flex;gap:.85rem;flex-wrap:wrap;margin-top:1.5rem}
+    .pill{padding:.7rem .95rem;border-radius:var(--radius-full);background:color-mix(in srgb,var(--color-surface) 78%, transparent);border:1px solid var(--color-border);font-size:var(--text-sm);color:var(--color-text-muted)}
+    .panel{background:color-mix(in srgb,var(--color-surface) 88%, transparent);border:1px solid var(--color-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm)}
+    .hero-panel{padding:1rem;display:grid;gap:1rem}
+    .hero-shell{border-radius:1.35rem;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:#091120;color:#e8f2ff;min-height:460px}
+    .shell-top{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.15rem;border-bottom:1px solid rgba(255,255,255,.08)}
+    .shell-main{padding:1.2rem;display:grid;gap:1rem;background:radial-gradient(circle at 20% 0%, rgba(99,209,255,.12), transparent 24%),radial-gradient(circle at 100% 0%, rgba(105,167,255,.15), transparent 20%),#091120;height:100%}
+    .dot-row{display:flex;gap:.45rem}.dot{width:.6rem;height:.6rem;border-radius:999px;background:rgba(255,255,255,.22)}
+    .signal-card{padding:1rem;border-radius:1.15rem;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.08)}
+    .signal-card h3{font-size:clamp(1.4rem,2vw,2.1rem)}
+    .signal-bar{height:12px;border-radius:999px;background:linear-gradient(90deg,#69a7ff,#63d1ff,#9a92ff);margin-top:1rem}
+    .shell-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem}
+    .mini-card{padding:1rem;border-radius:1rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+    .tiny{font-size:var(--text-xs);font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-faint)}
+    .section-head{display:flex;justify-content:space-between;gap:1rem;align-items:end;margin-bottom:1.5rem}
+    .section-head h2{font-size:var(--text-2xl);margin-top:.45rem}
+    .feature-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:1rem}
+    .feature-stack,.value-grid,.products-grid,.about-grid,.contact-grid,.footer-grid{display:grid;gap:1rem}
+    .feature-stack{grid-template-rows:1fr 1fr}
+    .card{padding:1.25rem;background:color-mix(in srgb,var(--color-surface) 90%, transparent);border:1px solid var(--color-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-sm)}
+    .card h3{font-size:clamp(1.35rem,2vw,1.8rem);margin-top:.5rem}
+    .card p{margin-top:.6rem}
+    .value-grid{grid-template-columns:repeat(3,1fr)}
+    .products-grid{grid-template-columns:repeat(3,1fr)}
+    .about-grid{grid-template-columns:.95fr 1.05fr;align-items:start}
+    .list{display:grid;gap:.8rem;margin-top:1rem}
+    .list li{list-style:none;padding-left:1.2rem;position:relative;color:var(--color-text-muted)}
+    .list li::before{content:'';position:absolute;left:0;top:.72rem;width:.42rem;height:.42rem;border-radius:999px;background:var(--color-primary)}
+    .bento{display:grid;grid-template-columns:1.15fr .85fr;gap:1rem}
+    .stat-card strong{display:block;font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);letter-spacing:-.04em}
+    .contact-grid{grid-template-columns:1fr 1fr}
+    .contact-card form{display:grid;gap:.9rem;margin-top:1rem}
+    label{font-size:var(--text-sm);font-weight:700;color:var(--color-text)}
+    input,textarea{width:100%;padding:.95rem 1rem;border-radius:1rem;border:1px solid var(--color-border);background:var(--color-surface);color:var(--color-text)}
+    textarea{min-height:140px;resize:vertical}
+    .contact-panel{display:grid;gap:1rem}
+    .contact-item{padding:1rem;border-radius:1rem;background:var(--color-surface-2);border:1px solid var(--color-border)}
+    footer{padding:0 0 2.5rem}.footer-wrap{padding-top:1rem;border-top:1px solid var(--color-divider)}
+    .footer-grid{grid-template-columns:1fr auto;align-items:center}
+    .footer-note{color:var(--color-text-faint);font-size:var(--text-sm)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}.reveal.show{opacity:1;transform:none}
+    @media (max-width:1024px){
+      .hero-grid,.feature-layout,.bento,.about-grid,.contact-grid,.value-grid,.products-grid,.footer-grid{grid-template-columns:1fr}
+      .nav-links{display:none}
+      .hero-copy h1{max-width:unset}
+    }
+    @media (max-width:720px){
+      .nav-actions .ghost-link{display:none}
+      .shell-grid{grid-template-columns:1fr}
+      .hero,.site-header + main section:first-child{padding-top:3rem}
+      .section-head{align-items:start;flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Aikord home">
+        <svg class="brand-logo" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <path d="M18 47V17h7.8l6.3 9.2L38.4 17H46v30h-7.6V30.3l-6.1 8.5h-.4l-6-8.5V47H18Z" fill="currentColor"></path>
+          <path d="M52 18c0-3.3-2.7-6-6-6H18c-3.3 0-6 2.7-6 6v28c0 3.3 2.7 6 6 6h28c3.3 0 6-2.7 6-6" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div class="brand-name">Aikord</div>
+          <div class="tiny">AI products studio</div>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#products">Products</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="ghost-link" href="#contact">Book a call</a>
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal show">
+          <div class="eyebrow">Future-built AI products</div>
+          <h1>AI systems that move from prototype to production.</h1>
+          <p>Aikord builds intelligent software for trading, agents, research workflows, and domain-specific decision systems. We combine serious engineering, product thinking, and usable interfaces.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#products">Explore products</a>
+            <a class="btn btn-secondary" href="#contact">Start a conversation</a>
+          </div>
+          <div class="hero-stats">
+            <div class="pill">Agents</div>
+            <div class="pill">Trading systems</div>
+            <div class="pill">Decision tools</div>
+            <div class="pill">Vertical AI</div>
+          </div>
+        </div>
+        <aside class="hero-panel panel reveal" aria-label="Product preview">
+          <div class="hero-shell">
+            <div class="shell-top">
+              <div class="dot-row"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="tiny" style="color:#8fa8cb">Aikord system view</div>
+            </div>
+            <div class="shell-main">
+              <div class="signal-card">
+                <div class="tiny" style="color:#86ceff">Live orchestration</div>
+                <h3>One brand. Many AI products.</h3>
+                <p style="margin-top:.55rem;color:#9cb0cd">Launch products with a shared intelligence layer, consistent product surface, and production-ready engineering.</p>
+                <div class="signal-bar"></div>
+              </div>
+              <div class="shell-grid">
+                <div class="mini-card"><div class="tiny">Trade</div><p style="margin-top:.4rem;color:#dce8f9">Research, signals, dashboards</p></div>
+                <div class="mini-card"><div class="tiny">Agents</div><p style="margin-top:.4rem;color:#dce8f9">Task automation, workflows</p></div>
+                <div class="mini-card"><div class="tiny">Ops</div><p style="margin-top:.4rem;color:#dce8f9">Monitoring, evals, iteration</p></div>
+                <div class="mini-card"><div class="tiny">Vertical AI</div><p style="margin-top:.4rem;color:#dce8f9">Domain-specific products</p></div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="capabilities">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="tiny">Capabilities</div>
+            <h2>Built for real-world AI shipping.</h2>
+          </div>
+          <p>Aikord is designed like a product company first: clear surfaces, fast iteration, and systems that can actually survive production.</p>
+        </div>
+        <div class="feature-layout">
+          <article class="card reveal">
+            <div class="tiny">Core model</div>
+            <h3>Intelligence layered with product discipline.</h3>
+            <p>We do not treat AI like a demo layer. Every product is shaped around workflow, reliability, observability, and a clear user outcome.</p>
+            <ul class="list">
+              <li>Applied agents with clear boundaries and measurable tasks.</li>
+              <li>Interfaces designed for signal, not clutter.</li>
+              <li>Systems structured for iteration, evaluation, and deployment.</li>
+            </ul>
+          </article>
+          <div class="feature-stack">
+            <article class="card reveal">
+              <div class="tiny">Engineering</div>
+              <h3>Production-minded stack.</h3>
+              <p>Modern frontend, backend services, observability, and deployment workflows that support serious product delivery.</p>
+            </article>
+            <article class="card reveal">
+              <div class="tiny">Design</div>
+              <h3>Interfaces people actually use.</h3>
+              <p>Strong information hierarchy, readable dashboards, and purposeful interactions instead of AI-themed decoration.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="tiny">Product lines</div>
+            <h2>What Aikord can launch.</h2>
+          </div>
+          <p>The company brand is broad on purpose so it can house multiple products without sounding confused or overly niche.</p>
+        </div>
+        <div class="products-grid">
+          <article class="card reveal">
+            <div class="tiny">01 / Trading</div>
+            <h3>AI trading systems</h3>
+            <p>Signal engines, research copilots, backtesting surfaces, and operator dashboards for faster decision loops.</p>
+          </article>
+          <article class="card reveal">
+            <div class="tiny">02 / Agents</div>
+            <h3>Autonomous product agents</h3>
+            <p>Task automation, human-in-the-loop systems, and domain workflows built for practical reliability.</p>
+          </article>
+          <article class="card reveal">
+            <div class="tiny">03 / Vertical AI</div>
+            <h3>Specialized decision tools</h3>
+            <p>Focused AI products tailored to a domain, with clear user value and an opinionated product experience.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container bento">
+        <article class="card stat-card reveal">
+          <div class="tiny">Why the brand works</div>
+          <strong>Modular</strong>
+          <p>Aikord sounds abstract enough for a global parent brand, but sharp enough to feel technical and product-native.</p>
+        </article>
+        <article class="card reveal">
+          <div class="tiny">Operating principle</div>
+          <h3>Build fewer things, more seriously.</h3>
+          <p>The positioning avoids “AI for everything” language and instead signals a focused company building high-quality intelligent systems.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about-grid">
+        <article class="card reveal">
+          <div class="tiny">About Aikord</div>
+          <h2 style="font-size:var(--text-2xl);margin-top:.5rem">A modern AI studio with product depth.</h2>
+          <p style="margin-top:.85rem">Aikord is built for a future where one company can launch multiple AI-native products under a coherent operating system: shared brand, shared infrastructure, and focused user experiences.</p>
+        </article>
+        <article class="card reveal">
+          <div class="tiny">What we believe</div>
+          <ul class="list">
+            <li>AI products should be useful before they are impressive.</li>
+            <li>Trust comes from clarity, reliability, and shipping quality.</li>
+            <li>Every new product should strengthen the parent brand, not fragment it.</li>
+            <li>Great interfaces reduce cognitive load around complex systems.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-grid">
+        <article class="card contact-card reveal">
+          <div class="tiny">Contact</div>
+          <h2 style="font-size:var(--text-2xl);margin-top:.5rem">Start the first Aikord conversation.</h2>
+          <p style="margin-top:.8rem">Use this section as your launch CTA until you wire it to email, a calendar flow, or a proper lead form backend.</p>
+          <form>
+            <div>
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="you@company.com" />
+            </div>
+            <div>
+              <label for="message">What are you building?</label>
+              <textarea id="message" placeholder="Tell us about the product, workflow, or AI system you want to build."></textarea>
+            </div>
+            <button class="btn btn-primary" type="button">Send inquiry</button>
+          </form>
+        </article>
+        <aside class="contact-panel reveal">
+          <div class="card contact-item">
+            <div class="tiny">Suggested CTA</div>
+            <h3 style="font-size:1.4rem;margin-top:.4rem">Book a product call</h3>
+            <p style="margin-top:.5rem">Ideal for your real production site once you connect a calendar or form flow.</p>
+          </div>
+          <div class="card contact-item">
+            <div class="tiny">Suggested socials</div>
+            <p style="margin-top:.5rem">LinkedIn for credibility, X for product updates, GitHub for technical proof, and a waitlist for early interest.</p>
+          </div>
+          <div class="card contact-item">
+            <div class="tiny">Launch checklist</div>
+            <p style="margin-top:.5rem">Point the domain, add analytics, connect a form endpoint, create favicon files, and publish the first product teaser.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-name">Aikord</div>
+          <div class="footer-note">AI products, intelligent systems, and product-first software.</div>
+        </div>
+        <div class="footer-note">Designed as a launch-ready public landing page.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const toggle = document.querySelector('[data-theme-toggle]');
+      let theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const drawIcon = () => {
+        toggle.innerHTML = theme === 'dark'
+          ? '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+          : '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      };
+      root.setAttribute('data-theme', theme);
+      drawIcon();
+      toggle.addEventListener('click', () => {
+        theme = theme === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', theme);
+        drawIcon();
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('show');
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    })();
+  </script>
+</body>
+</html>
